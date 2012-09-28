@@ -71,18 +71,39 @@ describe Calculator do
     before(:each) do
       @calc = Calculator.new
     end
+
     describe "Create a prod method that computes the multiples in the expression" do
       it "returns the product of the numbers" do
         @calc.prod(2, 1).should == 2
       end
+
       it "evaluates an empty string as zero" do
         @calc.prod("").should == 0
       end
+
       it "accepts unlimited parameters" do
         @calc.prod(3, 2, 1).should == 6
       end
+
       it "returns zero when there are no parameters" do
         @calc.prod().should == 0
+      end
+    end
+  end
+
+  context "Div Method" do
+    before(:each) do
+      @calc = Calculator.new
+    end
+    describe "Create a div method that computes the consecutive divisions in the expression" do
+      it "will return the final quotient of the numbers" do
+        @calc.div(2, 1).should == 2
+        @calc.div(3, 2, 1).should == 1
+        @calc.div(1, 2, 3).should == 0
+      end
+
+      it "will raise an exception if the expression contains the number 0" do
+        expect { @calc.div(3, 0) }.should raise_error
       end
     end
   end
