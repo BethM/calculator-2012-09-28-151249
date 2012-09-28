@@ -66,4 +66,24 @@ describe Calculator do
       end
     end
   end
+
+  context "Prod Method" do
+    before(:each) do
+      @calc = Calculator.new
+    end
+    describe "Create a prod method that computes the multiples in the expression" do
+      it "returns the product of the numbers" do
+        @calc.prod(2, 1).should == 2
+      end
+      it "evaluates an empty string as zero" do
+        @calc.prod("").should == 0
+      end
+      it "accepts unlimited parameters" do
+        @calc.prod(3, 2, 1).should == 6
+      end
+      it "returns zero when there are no parameters" do
+        @calc.prod().should == 0
+      end
+    end
+  end
 end

@@ -15,4 +15,12 @@ class Calculator
     end
     result
   end
+
+  def prod(*num)
+    result = num[0].to_i
+    for i in 1 ... num.length
+      result *= num[i].to_i
+    end
+    result
+  end
 end
