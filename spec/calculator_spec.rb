@@ -42,4 +42,28 @@ describe Calculator do
       end
     end
   end
+
+  context "Diff Method" do
+    before(:each) do
+      @calc = Calculator.new
+    end
+
+    describe "Create a diff method that computes the consecutive differences" do
+      it "returns the difference between two numbers" do
+        @calc.diff(1, 0).should == 1
+      end
+
+      it "can accept unlimited parameters" do
+        @calc.diff(3, 2, 1).should == 0
+        @calc.diff(5, 4, 3, 2, 1).should == -5
+      end
+
+      it "evaluates an empty string as zero" do
+        @calc.diff(3, "").should == 3
+      end
+      it "raises an exception when there are less than two parameters" do
+        expect { @calc.diff(1) }.should raise_error
+      end
+    end
+  end
 end

@@ -7,4 +7,12 @@ class Calculator
     end
     result
   end
+
+  def diff(num1, num2, *num)
+    result = num1.to_i - num2.to_i
+    for i in 0 ... num.length
+      result -= num[i].to_i
+    end
+    result
+  end
 end
