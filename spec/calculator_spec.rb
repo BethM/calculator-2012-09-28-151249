@@ -41,6 +41,12 @@ describe Calculator do
         @calc.add(@num1, @num2, 5, 8).should == 16
       end
     end
+
+    describe "Calling method with a negative number" do
+      it "should tell the user 'negatives not allowed' and give an exception listing the all the negative numbers" do
+        expect {@calc.add(-2, -1)}.to raise_error(StandardError, "negatives not allowed, [-2, -1]" )
+      end
+    end
   end
 
   context "Diff Method" do
@@ -61,8 +67,15 @@ describe Calculator do
       it "evaluates an empty string as zero" do
         @calc.diff(3, "").should == 3
       end
+
       it "raises an exception when there are less than two parameters" do
         expect { @calc.diff(1) }.should raise_error
+      end
+    end
+
+    describe "Calling method with a negative number" do
+      it "should tell the user 'negatives not allowed' and give an exception listing the all the negative numbers" do
+        expect {@calc.diff(-2, -1, -3)}.to raise_error(StandardError, "negatives not allowed, [-2, -1, -3]" )
       end
     end
   end
@@ -91,20 +104,21 @@ describe Calculator do
     end
   end
 
-  context "Div Method" do
-    before(:each) do
-      @calc = Calculator.new
-    end
-    describe "Create a div method that computes the consecutive divisions in the expression" do
-      it "will return the final quotient of the numbers" do
-        @calc.div(2, 1).should == 2
-        @calc.div(3, 2, 1).should == 1
-        @calc.div(1, 2, 3).should == 0
+    context "Div Method" do
+      before(:each) do
+        @calc = Calculator.new
       end
 
-      it "will raise an exception if the expression contains the number 0" do
-        expect { @calc.div(3, 0) }.should raise_error
+      describe "Create a div method that computes the consecutive divisions in the expression" do
+        it "will return the final quotient of the numbers" do
+          @calc.div(2, 1).should == 2
+          @calc.div(3, 2, 1).should == 1
+          @calc.div(1, 2, 3).should == 0
+        end
+
+        it "will raise an exception if the expression contains the number 0" do
+          expect { @calc.div(3, 0) }.should raise_error
+        end
       end
     end
-  end
 end
